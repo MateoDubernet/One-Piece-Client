@@ -1,0 +1,19 @@
+:host{
+    width : 100px;
+    height : 100px;
+}
+
+:host.isSelected{
+    
+    .moving-image{
+        border: red solid 5px;
+    }
+}
+
+.moving-image{
+    position : absolute;
+    cursor: pointer;
+    
+    width : 100px;
+    height : 100px;
+}

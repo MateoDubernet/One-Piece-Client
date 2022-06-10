@@ -1,0 +1,103 @@
+<kendo-dialog
+*ngIf="windowOpen"
+(close)="closeForm()"
+title="Edit Member"
+[width]="300">
+    <form [formGroup]="formMember" class="k-form">
+
+        <kendo-formfield>
+            <kendo-label text="Name"></kendo-label>
+            <input type="text" formControlName="name" kendoTextBox [nameValidator]="members">
+            <kendo-formerror *ngIf="formMember.controls['name'].errors?.['required']">Please enter a name</kendo-formerror>
+            <kendo-formerror *ngIf="formMember.controls['name'].errors?.['uniqueName']">Nom déja utilisé</kendo-formerror>
+        </kendo-formfield>
+        
+        <kendo-formfield>
+            <kendo-label text="Poste"></kendo-label>
+            <kendo-multiselect  
+            [data]="listOfPosteFilter"
+            [filterable]="true"
+            [allowCustom]="true"
+            [numberPosteValidator]="3"
+
+            (filterChange)="posteFliter($event)"
+            (valueChange)="addNewPoste($event)"
+            formControlName="postes"
+            kendoTextBox>
+            </kendo-multiselect>
+            <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['required']">Please enter a poste</kendo-formerror>
+            <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['limitNbrPoste']">Maximum is 3</kendo-formerror>
+            <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['forbiddenPoste']">Can't have Capitaine and Second</kendo-formerror>
+            <!-- <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['twoCapitaine']">Can't have two Capitaine</kendo-formerror> -->
+        </kendo-formfield>
+        
+        <kendo-formfield>
+            <kendo-label text="Abilities"></kendo-label>
+            <kendo-multiselect
+            [data]="listOfAbilitiesFilter"
+            [filterable]="true"
+            [allowCustom]="true"
+            [abilitiesValidator]="5"
+
+            (filterChange)="abilitiesFliter($event)"
+            (valueChange)="addNewAbilities($event)"
+            formControlName="abilities"
+            kendoTextBox>
+            </kendo-multiselect>
+
+            <kendo-formerror *ngIf="formMember.controls['abilities'].errors?.['required']">Please enter an abilitie</kendo-formerror>
+            <kendo-formerror *ngIf="formMember.controls['abilities'].errors?.['limitNbrfruits']">You can choose only one fruits</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label text="Bounty"></kendo-label>
+            <kendo-numerictextbox 
+            formControlName="bounty" 
+            [format]="{
+                style: 'currency', 
+                currency: 'JPY', 
+                currencyDisplay: 'symbol',
+                minimumFractionDigits: 0}"
+            [min]="0"
+            [decimals]="0">
+            </kendo-numerictextbox>
+            <kendo-formerror *ngIf="formMember.controls['bounty'].errors?.['required']">Please enter a bounty</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label text="Age"></kendo-label>
+            <kendo-numerictextbox 
+            formControlName="age" 
+            [format]="{
+                style: 'currency', 
+                currency: 'ans', 
+                currencyDisplay: 'code', 
+                minimumFractionDigits: 0}"
+            [min]="0"
+            [decimals]="0">
+            </kendo-numerictextbox>
+            <kendo-formerror *ngIf="formMember.controls['age'].errors?.['required']">Please enter an age </kendo-formerror>
+        </kendo-formfield>
+   
+        <kendo-formfield>
+            <kendo-label text="Weapon"></kendo-label>
+            <kendo-multiselect
+            [data]="listOfWeaponFilter"
+            [filterable]="true"
+            [allowCustom]="true"
+            [weaponsValidator]="5"
+
+            (filterChange)="weaponFliter($event)"
+            (valueChange)="addNewWeapon($event)"
+            formControlName="weapons"
+            kendoTextBox>
+            </kendo-multiselect>
+            <kendo-formerror *ngIf="formMember.controls['weapons'].errors?.['required']">Please select a weapon</kendo-formerror>
+            <kendo-formerror *ngIf="formMember.controls['weapons'].errors?.['forbiddenWeaponCombinaison']">Can't have weapons with None</kendo-formerror>
+        </kendo-formfield>
+    </form>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="closeForm()">Cancel</button>
+        <button kendo kendoButton [primary]="true" (click)="saveForm($event)" [disabled]="!formMember.valid">Save</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
