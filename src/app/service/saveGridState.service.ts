@@ -11,8 +11,6 @@ export class SaveGridStateService {
 
   get(token: string): JSON | string {
     const settings = localStorage.getItem(token);
-
-    console.log('load settings = ', settings);
     return settings ? JSON.parse(settings) : settings;
   }
 
@@ -21,8 +19,6 @@ export class SaveGridStateService {
     if (!this.savedStateExists && localStorage.length > 0) {
       this.savedStateExists = true;
     }
-    console.log('localStorage = ', localStorage);
-    console.log('saved settings = ', grid);
   }
 
   remove(): void {

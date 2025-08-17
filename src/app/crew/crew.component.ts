@@ -8,7 +8,6 @@ import { MembersService } from '../service/members.service';
 import { State } from '@progress/kendo-data-query';
 import { SaveGridStateService } from '../service/saveGridState.service';
 import { ColumnSetting } from '../model/columnSetting.model';
-import { GridSetting } from '../model/gridSetting.model';
 
 @Component({
   selector: 'app-crew',
@@ -154,33 +153,10 @@ export class CrewComponent implements OnInit {
   }
 
   loadState() {
-    const gridSettings: GridSetting[] = [];
-
-    const gridColumns = this._crewGrid.columnList.toArray();
-    console.log(gridColumns);
-
-    for (let i = 0; i < localStorage.length; i++) {
-      gridSettings.push(this.saveGridStateService.get(`grid${i}`));
-    }
-
-    this.crewService.state = gridSettings[0].state;
-
-    for (let i = 0; i < gridColumns.length; i++) {
-      gridColumns[i]['field'] = gridSettings[0].columns[i].field;
-      gridColumns[i]['hidden'] = gridSettings[0].columns[i].hidden;
-      gridColumns[i]['leafIndex'] = gridSettings[0].columns[i].leafIndex;
-      gridColumns[i]['locked'] = gridSettings[0].columns[i].locked;
-      gridColumns[i]['width'] = gridSettings[0].columns[i].width;
-
-      this._crewGrid.reorderColumn(gridColumns[i], gridColumns[i].leafIndex);
-    }
-
-    this.crewService.initDataGrid();
+    // To do
   }
 
   removeState() {
-    for (let i = 0; i <= localStorage.length; i++) {
-      this.saveGridStateService.remove(`grid${i}`);
-    }
+    // To do
   }
 }
