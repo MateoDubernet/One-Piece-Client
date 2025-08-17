@@ -1,10 +1,10 @@
 <nav>
-    <div class="title">
-        <h1>One Piece</h1>
-    </div>
-    <a (click)="goTo('members')">members</a>
-    <a (click)="goTo('onepiece')">one piece</a>
-    <a (click)="goTo('crew')">crew</a>
+  <div class="title">
+    <h1>One Piece</h1>
+  </div>
+  <a routerLink="members">Members</a>
+  <a routerLink="onepiece">One Piece</a>
+  <a routerLink="crew" (click)="resetSelectedCrew()">Crew</a>
 </nav>
 <router-outlet></router-outlet>
 <simple-notifications></simple-notifications>

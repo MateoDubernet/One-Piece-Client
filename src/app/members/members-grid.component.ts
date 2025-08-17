@@ -10,10 +10,9 @@ import { NotificationsService, NotificationType } from 'angular2-notifications';
 @Component({
   selector: 'app-members',
   templateUrl: './members-grid.component.html',
-  styleUrls: ['./members-grid.component.scss']
+  styleUrls: ['./members-grid.component.scss'],
 })
 export class MembersComponent implements OnInit {
-
   public member?: Member;
   public memberIndex!: number;
   public allMemberIndex!: number;
@@ -22,141 +21,133 @@ export class MembersComponent implements OnInit {
   public filter!: CompositeFilterDescriptor;
   public gridView!: GridDataResult;
   public selectedCrew!: Crew;
-  public sort : SortDescriptor[] = [
+  public sort: SortDescriptor[] = [
     {
-      field : 'id', dir : 'asc'
-    }];
+      field: 'id',
+      dir: 'asc',
+    },
+  ];
   public state: State = {
-    sort: this.sort
+    sort: this.sort,
   };
 
   constructor(
     private crewService: CrewService,
-    private memberService: MembersService, 
-    private notifService: NotificationsService) {}
+    private memberService: MembersService,
+    private notifService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.selectedCrew = this.crewService.selectedCrew;
-    
+
     this.crewService.setCrews();
-    this.initDataGrid()
+    this.initDataGrid();
   }
 
-  set crewMembers(crewMembers: Member[]){}
-  
-  get crewMembers(){
-    return this.selectedCrew.members
+  set crewMembers(crewMembers: Member[]) {}
+
+  get crewMembers() {
+    return this.selectedCrew.members;
   }
 
-  get crews(){
+  get crews() {
     return this.crewService.crews;
   }
 
-  get crewsFilter(){
+  get crewsFilter() {
     return this.crewService.crewsFilter;
   }
 
-  set crewsFilter(crewsFilter: Crew[]){}
+  set crewsFilter(crewsFilter: Crew[]) {}
 
-  crewsFliter(value: string){
-    this.crewsFilter = []
-    this.crews?.forEach((crew) => {
-      let filtercrews = crew.name.toLowerCase().indexOf(value.toLowerCase()) !==-1;
+  crewsFliter(value: string) {
+    this.crewsFilter = [];
+    this.crews?.forEach(crew => {
+      const filtercrews = crew.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
 
       if (filtercrews) {
-        this.crewsFilter.push(crew)
+        this.crewsFilter.push(crew);
       }
     });
   }
 
-  displayCrewMembers(crew: Crew){
-    console.log('return from grid', crew);
-
+  displayCrewMembers(crew: Crew) {
     if (crew !== undefined) {
-      this.crewMembers = crew.members
-      this.selectedCrew = crew
+      this.crewMembers = crew.members;
+      this.selectedCrew = crew;
       this.initDataGrid();
-    }else{
-      this.crewMembers = []
-      this.selectedCrew = new Crew()
+    } else {
+      this.crewMembers = [];
+      this.selectedCrew = new Crew();
       this.initDataGrid();
     }
-
-    console.log('new members',this.crewMembers);
   }
 
-  public sortChange(sort:SortDescriptor[]):void{
+  public sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
     this.initDataGrid();
   }
 
-  public filterChange(filter: CompositeFilterDescriptor):void{
+  public filterChange(filter: CompositeFilterDescriptor): void {
     this.filter = filter;
     this.initDataGrid();
   }
 
-  initDataGrid(){
-    this.gridView = process(this.selectedCrew.members, this.state)
+  initDataGrid() {
+    this.gridView = process(this.selectedCrew.members, this.state);
   }
- 
-  dataStateChange(state: DataStateChangeEvent): void{   this.state = state;
+
+  dataStateChange(state: DataStateChangeEvent): void {
+    this.state = state;
     this.initDataGrid();
   }
 
-  editMemberGrid( event: EditEvent ){
+  editMemberGrid(event: EditEvent) {
     this.newMember = false;
     this.member = event.dataItem;
 
-    this.selectedCrew.members.forEach((member)=>{ 
+    this.selectedCrew.members.forEach(member => {
       if (this.member?.id === member.id) {
         this.memberIndex = this.selectedCrew.members.indexOf(member);
         this.allMemberIndex = this.memberService.allMembers.indexOf(member);
       }
-    })
+    });
   }
 
-  editMember(newMember: Member){
-
-    this.selectedCrew.members.splice(this.memberIndex, 1, newMember)
+  editMember(newMember: Member) {
+    this.selectedCrew.members.splice(this.memberIndex, 1, newMember);
     this.initDataGrid();
   }
 
-  addMemberGrid(){
-    
+  addMemberGrid() {
     this.newMember = true;
     if (this.crewMembers.length === this.selectedCrew.memberMax) {
       this.member = undefined;
-  
+
       const title = 'Edit Member';
       const content = 'You have reached the max members, click to close';
       const type = NotificationType.Error;
-      const clickToClose = true
-  
-      this.notifService.create(title, content, type, clickToClose)
-    }else{
+      const clickToClose = true;
+
+      this.notifService.create(title, content, type, clickToClose);
+    } else {
       this.member = new Member();
     }
-    console.log(this.crewMembers, this.selectedCrew);
   }
 
-  addMember(newMember: Member){
-
-      this.selectedCrew.members.push(newMember)
-      this.initDataGrid();
+  addMember(newMember: Member) {
+    this.selectedCrew.members.push(newMember);
+    this.initDataGrid();
   }
 
-  deleteMemberGrid(event: RemoveEvent ){
-
+  deleteMemberGrid(event: RemoveEvent) {
     this.memberService.deleteMember(event.dataItem.id).subscribe();
 
     this.crewMembers.splice(event.rowIndex, 1);
     this.initDataGrid();
-
-    console.log(event.dataItem)
-    console.log(this.crewMembers)
   }
 
-  closeForm(){
+  closeForm() {
     this.member = undefined;
   }
 }

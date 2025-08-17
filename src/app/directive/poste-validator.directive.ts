@@ -1,57 +1,47 @@
-import { Directive, Input } from "@angular/core";
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from "@angular/forms";
-import { Member } from "../model/member.model";
+import { Directive, Input } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 @Directive({
-    selector: '[numberPosteValidator]' || '[namePosteValidator]',
-    providers: [{provide: NG_VALIDATORS, useExisting: PosteValidator, multi: true}]
+  selector: '[numberPosteValidator]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: PosteValidator, multi: true }],
 })
+export class PosteValidator implements Validator {
+  @Input() numberPosteValidator!: number;
 
-export class PosteValidator implements Validator{
+  public resLimitNbrPoste = { limitNbrPoste: true };
+  public resForbiddenPoste = { forbiddenPoste: true };
+  public resTwoCapitaine = { twoCapitaine: true };
 
-    @Input('numberPosteValidator') limitPoste!: number;
-    @Input('namePosteValidator') selectedMember!: Member[];
+  public selectMemberId!: number;
+  public capitaine!: boolean;
+  public compareControlValue!: number;
+  public saveSelectItemName: string | null = null;
 
-    public resLimitNbrPoste = {"limitNbrPoste" : true};
-    public resForbiddenPoste = {"forbiddenPoste": true};
-    public resTwoCapitaine = {"twoCapitaine": true};
+  constructor() {}
 
-    public selectMemberId!: number;
-    public capitaine!: boolean;
-    public compareControlValue!: number;
-    public saveSelectItemName: string | null = null;
+  validate(control: AbstractControl): ValidationErrors | null {
+    const choosenPoste = control.value?.join(', ');
+    this.saveSelectedItemName(choosenPoste);
 
-    constructor() {}
+    const posteCapitaine = 'Capitaine';
+    const posteSecond = 'Second';
 
-    validate(control: AbstractControl): ValidationErrors | null {
-        let choosenPoste = control.value?.join(', ');
-        this.saveSelectedItemName(choosenPoste)
-        console.log(this.limitPoste, 'DIRECTIVE POSTE');
-        
-        const posteCapitaine = 'Capitaine';
-        const posteSecond = 'Second';
-        
-        if (choosenPoste?.includes(posteCapitaine) && choosenPoste?.includes(posteSecond)) {
-            return this.resForbiddenPoste;
-        }  
-        
-        // if (choosenPoste?.includes(posteCapitaine) && this.saveSelectItemName !== posteCapitaine) {
-        //     return this.resTwoCapitaine
-        // }
+    if (choosenPoste?.includes(posteCapitaine) && choosenPoste?.includes(posteSecond)) {
+      return this.resForbiddenPoste;
+    }
 
-        if (control.value?.length > this.limitPoste) {
-            return this.resLimitNbrPoste;
-        }else{
-            return null;
-        }
+    if (control.value?.length > this.numberPosteValidator) {
+      return this.resLimitNbrPoste;
+    } else {
+      return null;
+    }
+  }
 
-    } 
-
-    saveSelectedItemName(saveSelectItemName: string){
-        if (this.saveSelectItemName === null && saveSelectItemName !== undefined) {
-          this.saveSelectItemName = saveSelectItemName;
-        }else if(this.saveSelectItemName === null && saveSelectItemName === undefined){
-          this.saveSelectItemName = ''
-        }
-      }
+  saveSelectedItemName(saveSelectItemName: string) {
+    if (this.saveSelectItemName === null && saveSelectItemName !== undefined) {
+      this.saveSelectItemName = saveSelectItemName;
+    } else if (this.saveSelectItemName === null && saveSelectItemName === undefined) {
+      this.saveSelectItemName = '';
+    }
+  }
 }

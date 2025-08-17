@@ -1,21 +1,10 @@
 <div class="sea-board">
-    <div *ngFor="let tablecolumns of boardRows" class="grid-table-row"> 
-        <span *ngFor="let tablerow of boardColumns" class="grid-table-column">
-            <app-water></app-water>
-        </span>
-    </div>
+  <div *ngFor="let tablecolumns of boardRows" class="grid-table-row">
+    <span *ngFor="let tablerow of boardColumns" class="grid-table-column">
+      <app-water></app-water>
+    </span>
+  </div>
 
-    <app-navire 
-    [ngClass]="activeClass ? 'isSelected' : 'notSelected'"
-    [viewShip]="shipPropertie"
-    (click)="toggleClass()">
-    </app-navire>
-    <button kendoButton (click)="viewShipPropertie()">Propriété Navire</button>
-
+  <app-navire [ngClass]="activeClass ? 'isSelected' : 'notSelected'" [viewShip]="shipPropertie" (click)="toggleClass()"> </app-navire>
+  <button kendoButton (click)="viewShipPropertie()">Propriété Navire</button>
 </div>
-
-
-
-
-
-

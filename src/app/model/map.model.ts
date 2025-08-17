@@ -1,12 +1,11 @@
-export class Map{
+export class Map {
+  private boardLength!: string[][];
 
-    private boardLength!: string[][];
+  constructor(boardLength: string[][]) {
+    this.boardLength = boardLength;
+  }
 
-    constructor(boardLength: string[][]){
-        this.boardLength = boardLength;
-    }
-
-    get lengthBoard(){
-        return this.boardLength;
-    }
+  get lengthBoard() {
+    return this.boardLength;
+  }
 }
