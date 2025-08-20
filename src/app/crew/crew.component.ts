@@ -6,7 +6,7 @@ import { CompositeFilterDescriptor, SortDescriptor } from '@progress/kendo-data-
 import { Router } from '@angular/router';
 import { MembersService } from '../service/members.service';
 import { State } from '@progress/kendo-data-query';
-import { SaveGridStateService } from '../service/saveGridState.service';
+import { SaveGridStateService } from '../service/grid-setting/saveGridState.service';
 import { ColumnSetting } from '../model/columnSetting.model';
 
 @Component({
@@ -62,20 +62,16 @@ export class CrewComponent implements OnInit {
     this.crewService.state = state;
   }
 
-  public goTo(path: string) {
-    this.router.navigate([path]);
-  }
-
-  public viewMembersGrid(crew: Crew) {
+  viewMembersGrid(crew: Crew) {
     this.crewService.selectedCrew = crew;
   }
 
-  public sortChange(sort: SortDescriptor[]): void {
+  sortChange(sort: SortDescriptor[]): void {
     this.crewService.state.sort = sort;
     this.crewService.initDataGrid();
   }
 
-  public filterChange(filter: CompositeFilterDescriptor): void {
+  filterChange(filter: CompositeFilterDescriptor): void {
     this.crewService.state.filter = filter;
     this.crewService.initDataGrid();
   }

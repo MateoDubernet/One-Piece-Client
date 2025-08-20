@@ -29,22 +29,31 @@
       </kendo-combobox>
       <div *ngIf="this.selectedCrew.name === undefined">Select a Crew</div>
     </ng-template>
+
     <kendo-grid-column field="id" title="ID" filter="numeric" format="n0" [width]="150"></kendo-grid-column>
+
     <kendo-grid-column field="name" title="Name"></kendo-grid-column>
+
     <kendo-grid-column field="poste" title="Poste"> </kendo-grid-column>
+
     <kendo-grid-column field="abilitie" title="Abilities"> </kendo-grid-column>
+
     <kendo-grid-column field="bounty" title="Bounty" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <div>{{dataItem.bounty | currency : 'JPY' : '¥' : '1.0-0' }}</div>
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="age" title="Age" format="n0" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <div>{{dataItem.age}} ans</div>
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="crew" title="Crew"></kendo-grid-column>
+
     <kendo-grid-column field="weapon" title="Weapon"> </kendo-grid-column>
+
     <kendo-grid-command-column [columnMenu]="false">
       <ng-template kendoGridCellTemplate>
         <button kendoGridEditCommand [primary]="true">Edit</button>

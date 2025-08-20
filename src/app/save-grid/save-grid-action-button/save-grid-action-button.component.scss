@@ -1,0 +1,14 @@
+.grid-title-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 30ch;
+    font-weight: 600;
+    display: inline-block;
+}

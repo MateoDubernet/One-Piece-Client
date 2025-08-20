@@ -23,7 +23,7 @@
       <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['required']">Please enter a poste</kendo-formerror>
       <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['limitNbrPoste']">Maximum is 3</kendo-formerror>
       <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['forbiddenPoste']">Can't have Capitaine and Second</kendo-formerror>
-      <!-- <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['twoCapitaine']">Can't have two Capitaine</kendo-formerror> -->
+      <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['twoCapitaine']">Can't have two Capitaine</kendo-formerror>
     </kendo-formfield>
 
     <kendo-formfield>
@@ -49,10 +49,10 @@
       <kendo-numerictextbox
         formControlName="bounty"
         [format]="{
-            style: 'currency', 
-            currency: 'JPY', 
-            currencyDisplay: 'symbol',
-            minimumFractionDigits: 0
+          style: 'currency',
+          currency: 'JPY',
+          currencyDisplay: 'symbol',
+          minimumFractionDigits: 0
         }"
         [min]="0"
         [decimals]="0"
@@ -66,10 +66,10 @@
       <kendo-numerictextbox
         formControlName="age"
         [format]="{
-            style: 'currency', 
-            currency: 'ans', 
-            currencyDisplay: 'code', 
-            minimumFractionDigits: 0
+          style: 'currency',
+          currency: 'ans',
+          currencyDisplay: 'code',
+          minimumFractionDigits: 0
         }"
         [min]="0"
         [decimals]="0"
@@ -97,6 +97,7 @@
       >
     </kendo-formfield>
   </form>
+
   <kendo-dialog-actions>
     <button kendoButton (click)="closeForm()">Cancel</button>
     <button kendo kendoButton [primary]="true" (click)="saveForm()" [disabled]="!formMember.valid">Save</button>

@@ -10,7 +10,7 @@ export class StateFormComponent {
   @Output() createState = new EventEmitter<string>();
   @Output() close = new EventEmitter<boolean>();
 
-  windowOpen: boolean = false;
+  formOpen: boolean = false;
   gridStateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
   });
@@ -18,7 +18,7 @@ export class StateFormComponent {
   constructor() {}
 
   closeForm() {
-    this.windowOpen = false;
+    this.formOpen = false;
     this.close.emit();
   }
 }

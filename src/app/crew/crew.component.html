@@ -1,5 +1,4 @@
 <h1>Crews</h1>
-<!-- affiche la liste des équipages -->
 <kendo-grid
   #grid
   [data]="gridView"
@@ -28,24 +27,28 @@
     <button kendoButton *ngIf="savedStateExists" (click)="loadState()">Load saved state</button>
     <button kendoButton *ngIf="savedStateExists" (click)="removeState()">Remove saved state</button>
   </ng-template>
+
   <kendo-grid-column [width]="200" field="id" title="ID" [locked]="true"></kendo-grid-column>
+
   <kendo-grid-column [width]="200" field="name" title="Name"></kendo-grid-column>
+
   <kendo-grid-column [width]="200" field="ship" title="Ship Name"></kendo-grid-column>
+
   <kendo-grid-column [width]="200" field="members" title="Members">
     <ng-template kendoGridCellTemplate let-dataItem>
       <div class="crewGridMemberCell">
         {{dataItem.members?.length}}
-        <button kendoButton (click)="goTo('members')" (click)="viewMembersGrid(dataItem)">
-          <a>View Member</a>
-        </button>
+        <button kendoButton routerLink="members" (click)="viewMembersGrid(dataItem)">View Member</button>
       </div>
     </ng-template>
   </kendo-grid-column>
+
   <kendo-grid-column [width]="200" field="memberMax" title="Max Members">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <div>{{dataItem.memberMax}} members</div>
     </ng-template>
   </kendo-grid-column>
+
   <kendo-grid-command-column [width]="200" [columnMenu]="false">
     <ng-template kendoGridCellTemplate>
       <button kendoGridEditCommand [primary]="true">Edit</button>

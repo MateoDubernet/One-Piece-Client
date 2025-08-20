@@ -6,31 +6,35 @@
       <kendo-formerror *ngIf="formCrew.controls['name'].errors?.['required']">Please enter a name</kendo-formerror>
       <kendo-formerror *ngIf="formCrew.controls['name'].errors?.['uniqueName']">Name already used</kendo-formerror>
     </kendo-formfield>
+
     <kendo-formfield>
       <kendo-label text="Ship"></kendo-label>
       <input type="text" formControlName="ship" kendoTextBox [shipValidator]="crews" />
       <kendo-formerror *ngIf="formCrew.controls['ship'].errors?.['required']">Please enter a name</kendo-formerror>
       <kendo-formerror *ngIf="formCrew.controls['ship'].errors?.['uniqueShip']">Ship name already used</kendo-formerror>
     </kendo-formfield>
+
     <kendo-formfield>
       <kendo-label text="Member Max"></kendo-label>
       <kendo-numerictextbox
         formControlName="memberMax"
         [format]="{
-            style: 'currency', 
-            currency: ' ', 
-            currencyDisplay: 'code', 
-            minimumFractionDigits: 0}"
+          style: 'currency',
+          currency: ' ',
+          currencyDisplay: 'code',
+          minimumFractionDigits: 0
+        }"
         [min]="0"
         [decimals]="0"
         [memberMaxValidator]="formCrew.value"
       >
       </kendo-numerictextbox>
-      <kendo-formerror *ngIf="formCrew.controls['memberMax'].errors?.['limitNbrMemberMax']"
-        >Max can't be less than actual members</kendo-formerror
-      >
+      <kendo-formerror *ngIf="formCrew.controls['memberMax'].errors?.['limitNbrMemberMax']">
+        Max can't be less than actual members
+      </kendo-formerror>
     </kendo-formfield>
   </form>
+
   <kendo-dialog-actions>
     <button kendoButton (click)="closeForm()">Cancel</button>
     <button kendo kendoButton [primary]="true" (click)="saveForm()" [disabled]="!formCrew.valid">Save</button>

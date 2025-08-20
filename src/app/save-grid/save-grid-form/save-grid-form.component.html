@@ -1,0 +1,26 @@
+<kendo-dialog [width]="300" *ngIf="_isFormOpen" (close)="closeForm()">
+  <kendo-dialog-titlebar>
+    {{(isNewSave ? 'create' : 'save') | translate}}
+  </kendo-dialog-titlebar>
+
+    <form [formGroup]="saveGridSettingsForm" class="k-form">
+      <kendo-formfield>
+        <kendo-label [for]="stateName" text="{{'grid.save.name'| translate}}"></kendo-label>
+        <kendo-textbox class="grid-name-input" 
+        #stateName 
+        kendoTextBox
+        formControlName="saveName" 
+        [firstInputFocus]="{'inputElement': stateName.input}"
+        (keyup.enter)="saveForm()">
+        </kendo-textbox>
+        <kendo-formerror *ngIf="saveGridSettingsForm.controls.saveName.errors?.required">{{'message.avertissement.champ.requis'|translate}}</kendo-formerror>
+        <kendo-formerror *ngIf="saveGridSettingsForm.controls.saveName.getError('uniqueGridSaveName')">{{'grid.save.unique.name'|translate}}</kendo-formerror>
+        <kendo-formerror *ngIf="saveGridSettingsForm.controls.saveName.errors?.maxlength">{{'limit.character.number'|translate: {"maxCharacter": 100} }}</kendo-formerror>
+      </kendo-formfield>
+    </form>
+  
+    <kendo-dialog-actions>
+      <button kendoButton (click)="closeForm($event)">{{ 'button.cancel' | translate}}</button>
+      <button kendoButton [primary]="true" (click)="saveForm()">{{(isNewSave ? 'create' : 'save') | translate}}</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

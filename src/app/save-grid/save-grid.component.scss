@@ -1,0 +1,44 @@
+.save-button {
+    margin-right: 5px;
+}
+
+.saved-grids {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.grid-list {
+    border: solid 1px #c7c7c7;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.grid-list:not(:first-of-type) {
+    margin-top: 10px;
+}
+
+.saved-grids-actions-buttons {
+    button:not(:last-child){
+        margin-right: 5px;
+    }
+}
+
+.no-grids-saved {
+    text-align: center;
+}
+
+.edit-form-txtbox-button {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.validate-edit-button {
+    margin-right: 5px;
+}
+
+.delete-button {
+    margin-left: 1rem;
+}

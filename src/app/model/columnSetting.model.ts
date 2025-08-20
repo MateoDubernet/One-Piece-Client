@@ -2,6 +2,6 @@ export class ColumnSetting {
   field?: string;
   width?: number;
   locked?: boolean;
-  leafIndex?: number;
+  orderIndex?: number;
   hidden?: boolean;
 }
