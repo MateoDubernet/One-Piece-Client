@@ -13,21 +13,21 @@ import { NotificationsService, NotificationType } from 'angular2-notifications';
   styleUrls: ['./members-grid.component.scss'],
 })
 export class MembersComponent implements OnInit {
-  public member?: Member;
-  public memberIndex!: number;
-  public allMemberIndex!: number;
-  public newMember: boolean = false;
+  member?: Member;
+  memberIndex!: number;
+  allMemberIndex!: number;
+  newMember: boolean = false;
 
-  public filter!: CompositeFilterDescriptor;
-  public gridView!: GridDataResult;
-  public selectedCrew!: Crew;
-  public sort: SortDescriptor[] = [
+  filter!: CompositeFilterDescriptor;
+  gridView!: GridDataResult;
+  selectedCrew!: Crew;
+  sort: SortDescriptor[] = [
     {
       field: 'id',
       dir: 'asc',
     },
   ];
-  public state: State = {
+  state: State = {
     sort: this.sort,
   };
 
@@ -37,17 +37,12 @@ export class MembersComponent implements OnInit {
     private notifService: NotificationsService
   ) {}
 
-  ngOnInit(): void {
-    this.selectedCrew = this.crewService.selectedCrew;
-
-    this.crewService.setCrews();
-    this.initDataGrid();
-  }
-
-  set crewMembers(crewMembers: Member[]) {}
-
   get crewMembers() {
     return this.selectedCrew.members;
+  }
+
+  set crewMembers(crewMembers: Member[]) {
+    this.selectedCrew.members = crewMembers;
   }
 
   get crews() {
@@ -58,7 +53,16 @@ export class MembersComponent implements OnInit {
     return this.crewService.crewsFilter;
   }
 
-  set crewsFilter(crewsFilter: Crew[]) {}
+  set crewsFilter(crewsFilter: Crew[]) {
+    this.crewService.crewsFilter = crewsFilter;
+  }
+
+  ngOnInit(): void {
+    this.selectedCrew = this.crewService.selectedCrew;
+
+    this.crewService.setCrews();
+    this.initDataGrid();
+  }
 
   crewsFliter(value: string) {
     this.crewsFilter = [];
@@ -83,12 +87,12 @@ export class MembersComponent implements OnInit {
     }
   }
 
-  public sortChange(sort: SortDescriptor[]): void {
+  sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
     this.initDataGrid();
   }
 
-  public filterChange(filter: CompositeFilterDescriptor): void {
+  filterChange(filter: CompositeFilterDescriptor): void {
     this.filter = filter;
     this.initDataGrid();
   }

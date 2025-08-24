@@ -7,8 +7,8 @@ import { OnePieceComponent } from './one-piece/one-piece.component';
 const routes: Routes = [
   { path: '', redirectTo: 'onepiece', pathMatch: 'full' },
   { path: 'members', component: MembersComponent },
-  { path: 'onepiece', component: OnePieceComponent },
-  { path: 'crew', component: CrewComponent },
+  { path: 'one_piece', component: OnePieceComponent },
+  { path: 'crews', component: CrewComponent },
 ];
 
 @NgModule({

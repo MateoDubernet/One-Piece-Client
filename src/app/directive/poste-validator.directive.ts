@@ -8,14 +8,13 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 export class PosteValidator implements Validator {
   @Input() numberPosteValidator!: number;
 
-  public resLimitNbrPoste = { limitNbrPoste: true };
-  public resForbiddenPoste = { forbiddenPoste: true };
-  public resTwoCapitaine = { twoCapitaine: true };
-
-  public selectMemberId!: number;
-  public capitaine!: boolean;
-  public compareControlValue!: number;
-  public saveSelectItemName: string | null = null;
+  resLimitNbrPoste = { limitNbrPoste: true };
+  resForbiddenPoste = { forbiddenPoste: true };
+  resTwoCapitaine = { twoCapitaine: true };
+  selectMemberId!: number;
+  capitaine!: boolean;
+  compareControlValue!: number;
+  saveSelectItemName: string | null = null;
 
   constructor() {}
 

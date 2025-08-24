@@ -3,11 +3,8 @@ import { CrewService } from '../service/crews.service';
 import { Crew } from '../model/crew.model';
 import { CellClickEvent, DataStateChangeEvent, EditEvent, GridComponent, RemoveEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { CompositeFilterDescriptor, SortDescriptor } from '@progress/kendo-data-query';
-import { Router } from '@angular/router';
 import { MembersService } from '../service/members.service';
 import { State } from '@progress/kendo-data-query';
-import { SaveGridStateService } from '../service/grid-setting/saveGridState.service';
-import { ColumnSetting } from '../model/columnSetting.model';
 
 @Component({
   selector: 'app-crew',
@@ -19,39 +16,21 @@ export class CrewComponent implements OnInit {
     this._crewGrid = grid;
   }
 
-  public crew?: Crew;
-  public newCrew: boolean = false;
-  public crewIndex!: number;
-  public crews: Crew[] = [];
-  public filter!: CompositeFilterDescriptor;
-  public lastSelectDataItem!: Crew;
-  public _crewGrid: GridComponent;
+  crew?: Crew;
+  newCrew: boolean = false;
+  crewIndex!: number;
+  crews: Crew[] = [];
+  filter!: CompositeFilterDescriptor;
+  lastSelectDataItem!: Crew;
+  _crewGrid: GridComponent;
 
   constructor(
     private memberService: MembersService,
-    private crewService: CrewService,
-    private router: Router,
-    private saveGridStateService: SaveGridStateService
+    private crewService: CrewService
   ) {}
-
-  ngOnInit(): void {
-    this.crewService.setCrews();
-
-    if (!this.savedStateExists && localStorage.length > 0) {
-      this.savedStateExists = true;
-    }
-  }
 
   get gridView() {
     return this.crewService.gridView;
-  }
-
-  get savedStateExists() {
-    return this.saveGridStateService.savedStateExists;
-  }
-
-  set savedStateExists(savedStateExist: boolean) {
-    this.saveGridStateService.savedStateExists = savedStateExist;
   }
 
   get state() {
@@ -60,6 +39,10 @@ export class CrewComponent implements OnInit {
 
   set state(state: State) {
     this.crewService.state = state;
+  }
+
+  ngOnInit(): void {
+    this.crewService.setCrews();
   }
 
   viewMembersGrid(crew: Crew) {
@@ -125,34 +108,5 @@ export class CrewComponent implements OnInit {
 
   cellClickHandler(event: CellClickEvent) {
     this.lastSelectDataItem = event.dataItem;
-  }
-
-  saveState(grid: GridComponent) {
-    const columnsSettings: ColumnSetting[] = [];
-
-    grid.columnList.toArray().forEach(column => {
-      columnsSettings.push({
-        field: column['field'],
-        width: column['width'],
-        locked: column['locked'],
-        leafIndex: column['leafIndex'],
-        hidden: column['hidden'],
-      });
-    });
-
-    const gridSettings = {
-      state: this.state,
-      columns: columnsSettings,
-    };
-
-    this.saveGridStateService.set(`grid${localStorage.length}`, gridSettings);
-  }
-
-  loadState() {
-    // To do
-  }
-
-  removeState() {
-    // To do
   }
 }

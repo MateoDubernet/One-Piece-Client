@@ -9,10 +9,9 @@ import { CrewService } from '../service/crews.service';
   styleUrls: ['./crew-form.component.scss'],
 })
 export class CrewFormComponent {
-  public windowOpen: boolean = false;
-  public selectedCrew!: Crew | undefined;
-
-  public formCrew = new FormGroup({
+  windowOpen: boolean = false;
+  selectedCrew!: Crew | undefined;
+  formCrew = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     ship: new FormControl('', [Validators.required]),

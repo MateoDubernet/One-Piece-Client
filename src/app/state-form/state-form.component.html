@@ -1,9 +1,0 @@
-<kendo-dialog *ngIf="formOpen" (close)="closeForm()" title="Edit Crew" [width]="300">
-  <form [formGroup]="gridStateForm" class="k-form">
-    <kendo-formfield>
-      <kendo-label text="Name"></kendo-label>
-      <input type="text" formControlName="name" kendoTextBox />
-      <kendo-formerror *ngIf="gridStateForm.controls['name'].errors?.['required']">Please enter a name</kendo-formerror>
-    </kendo-formfield>
-  </form>
-</kendo-dialog>

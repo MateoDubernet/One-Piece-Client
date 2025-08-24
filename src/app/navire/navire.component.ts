@@ -41,14 +41,6 @@ export class NavireComponent implements OnInit {
 
   constructor(private crewService: CrewService) {}
 
-  ngOnInit(): void {
-    const mugiwara = this.crewService.selectedCrew;
-    const sunny = new Navire('Thousand Sunny', mugiwara, { x: 0, y: 0 }, 'Brigantine', 'sunny.jpg');
-
-    this.navire = sunny;
-    this.position = this.navire.navirePosition;
-  }
-
   get navirePositionTop() {
     return this.position.y;
   }
@@ -59,6 +51,14 @@ export class NavireComponent implements OnInit {
 
   get navireSunny() {
     return this.navire;
+  }
+
+  ngOnInit(): void {
+    const mugiwara = this.crewService.selectedCrew;
+    const sunny = new Navire('Thousand Sunny', mugiwara, { x: 0, y: 0 }, 'Brigantine', 'sunny.jpg');
+
+    this.navire = sunny;
+    this.position = this.navire.navirePosition;
   }
 
   closeNavireWindow() {

@@ -9,11 +9,10 @@ import { Crew } from '../model/crew.model';
 export class MemberMaxValidatorDirective implements Validator {
   @Input('memberMaxValidator') selectedCrew!: Crew;
 
-  public resLimitNbrMemberMax = { limitNbrMemberMax: true };
-
-  public selectMemberId!: number;
-  public forbiddenName!: string;
-  public compareControlValue!: number;
+  resLimitNbrMemberMax = { limitNbrMemberMax: true };
+  selectMemberId!: number;
+  forbiddenName!: string;
+  compareControlValue!: number;
 
   constructor() {}
 

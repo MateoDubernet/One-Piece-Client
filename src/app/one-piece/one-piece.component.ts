@@ -14,6 +14,22 @@ export class OnePieceComponent implements OnInit {
 
   constructor() {}
 
+  get boardRows() {
+    return this.rows;
+  }
+
+  get boardColumns() {
+    return this.columns;
+  }
+
+  get shipPropertie() {
+    return this.viewShipProperties;
+  }
+
+  get activeClass() {
+    return this.active;
+  }
+
   ngOnInit(): void {
     const map = new Map([
       ['0', '0', '0', '0', '0'],
@@ -23,14 +39,6 @@ export class OnePieceComponent implements OnInit {
     this.columns = map.lengthBoard[1];
 
     map.lengthBoard.forEach(() => {});
-  }
-
-  get boardRows() {
-    return this.rows;
-  }
-
-  get boardColumns() {
-    return this.columns;
   }
 
   toggleClass() {
@@ -47,13 +55,5 @@ export class OnePieceComponent implements OnInit {
     } else {
       this.viewShipProperties = false;
     }
-  }
-
-  get shipPropertie() {
-    return this.viewShipProperties;
-  }
-
-  get activeClass() {
-    return this.active;
   }
 }

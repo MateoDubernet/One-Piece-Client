@@ -8,11 +8,60 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class MembersService {
-  public newPoste: string[] = [];
-  public newAbilitie: string[] = [];
-  public newWeapon: string[] = [];
-  public allMembers: Member[] = [];
-  public serverUrl = `${environment.api}/member`;
+  newPoste: string[] = [];
+  newAbilitie: string[] = [];
+  newWeapon: string[] = [];
+  allMembers: Member[] = [];
+  serverUrl = `${environment.api}/member`;
+
+  customPoste: string[] = [];
+  listOfPoste = [
+    'Capitaine',
+    'Second',
+    'Navigatrice',
+    'Medecin',
+    'Cuistot',
+    'Charpentier',
+    'Historien',
+    'Musicien',
+    'Timonier',
+    'Canonnier',
+    'Vigie',
+  ];
+
+  customAbilities: string[] = [];
+  listOfAbilities = [
+    'Paramecia',
+    'Zoan',
+    'Logia',
+    'Haki Armement',
+    'Haki Observation',
+    'Haki Royal',
+    'Epeiste',
+    'Tireur',
+    'Cyborg',
+    'Corp à corp',
+  ];
+
+  customWeapon: string[] = [];
+  listOfWeapon = [
+    'Sabres',
+    'Bishento',
+    'couteau',
+    'Dague',
+    'Longue Epée',
+    'Epée',
+    'hache',
+    'Pistolet',
+    'Fusil',
+    'Canon',
+    'lance pierre',
+    'Baton',
+    'Cyborg',
+    'Kanabo',
+    'Massue',
+    'None',
+  ];
 
   constructor(private http: HttpClient) {}
 
@@ -50,53 +99,4 @@ export class MembersService {
   deleteMember(id: number): Observable<void> {
     return this.http.delete<void>(`${this.serverUrl}/?id=${id}`);
   }
-
-  public customPoste: string[] = [];
-  public listOfPoste = [
-    'Capitaine',
-    'Second',
-    'Navigatrice',
-    'Medecin',
-    'Cuistot',
-    'Charpentier',
-    'Historien',
-    'Musicien',
-    'Timonier',
-    'Canonnier',
-    'Vigie',
-  ];
-
-  public customAbilities: string[] = [];
-  public listOfAbilities = [
-    'Paramecia',
-    'Zoan',
-    'Logia',
-    'Haki Armement',
-    'Haki Observation',
-    'Haki Royal',
-    'Epeiste',
-    'Tireur',
-    'Cyborg',
-    'Corp à corp',
-  ];
-
-  public customWeapon: string[] = [];
-  public listOfWeapon = [
-    'Sabres',
-    'Bishento',
-    'couteau',
-    'Dague',
-    'Longue Epée',
-    'Epée',
-    'hache',
-    'Pistolet',
-    'Fusil',
-    'Canon',
-    'lance pierre',
-    'Baton',
-    'Cyborg',
-    'Kanabo',
-    'Massue',
-    'None',
-  ];
 }

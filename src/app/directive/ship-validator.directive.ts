@@ -9,12 +9,11 @@ import { Crew } from '../model/crew.model';
 export class ShipValidatorDirective implements Validator {
   @Input('shipValidator') selectedItem!: Crew[] | undefined;
 
-  public resUniqueName = { uniqueShip: true };
-
-  public forbiddenName!: string;
-  public compareControlValue!: number;
-  public saveSelectItemName: string | null = null;
-  public saveSelectItemNameState: boolean = false;
+  resUniqueName = { uniqueShip: true };
+  forbiddenName!: string;
+  compareControlValue!: number;
+  saveSelectItemName: string | null = null;
+  saveSelectItemNameState: boolean = false;
 
   constructor() {}
 

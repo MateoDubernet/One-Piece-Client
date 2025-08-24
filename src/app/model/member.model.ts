@@ -1,16 +1,16 @@
 export class Member {
-  public id!: number;
-  public name!: string;
-  public postes!: string[];
-  public poste!: string;
-  public abilities!: string[];
-  public abilitie!: string;
-  public bounty!: number;
-  public age!: number;
-  public crew!: string;
-  public weapons!: string[];
-  public weapon!: string;
-  public crew_id!: number;
+  id!: number;
+  name!: string;
+  postes!: string[];
+  poste!: string;
+  abilities!: string[];
+  abilitie!: string;
+  bounty!: number;
+  age!: number;
+  crew!: string;
+  weapons!: string[];
+  weapon!: string;
+  crew_id!: number;
 
   constructor() {}
 }

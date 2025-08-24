@@ -1,11 +1,11 @@
 import { Member } from './member.model';
 
 export class Crew {
-  public id!: number;
-  public memberMax!: number;
-  public name!: string;
-  public ship!: string;
-  public members: Member[] = [];
+  id!: number;
+  memberMax!: number;
+  name!: string;
+  ship!: string;
+  members: Member[] = [];
 
   constructor() {}
 

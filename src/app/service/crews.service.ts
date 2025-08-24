@@ -11,11 +11,12 @@ import { State, process } from '@progress/kendo-data-query';
   providedIn: 'root',
 })
 export class CrewService {
-  public selectedCrew: Crew = new Crew();
-  public crews: Crew[] = [];
-  public crewsFilter!: Crew[];
-  public gridView!: GridDataResult;
-  public state: State = {
+  serverUrl = `${environment.api}/crew`;
+  selectedCrew: Crew = new Crew();
+  crews: Crew[] = [];
+  crewsFilter!: Crew[];
+  gridView!: GridDataResult;
+  state: State = {
     sort: [{ field: 'id', dir: 'asc' }],
     skip: 0,
     take: 5,
@@ -24,8 +25,6 @@ export class CrewService {
       filters: [],
     },
   };
-
-  public serverUrl = `${environment.api}/crew`;
 
   constructor(
     private http: HttpClient,

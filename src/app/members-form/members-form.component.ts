@@ -11,15 +11,13 @@ import { CrewService } from '../service/crews.service';
   styleUrls: ['./members-form.component.scss'],
 })
 export class MembersFormComponent implements OnInit {
-  public windowOpen: boolean = false;
-  public selectedMember!: Member | undefined;
-  private lastMemberId!: number;
+  windowOpen: boolean = false;
+  selectedMember!: Member | undefined;
+  listOfPosteFilter!: string[];
+  listOfWeaponFilter!: string[];
+  listOfAbilitiesFilter!: string[];
 
-  public listOfPosteFilter!: string[];
-  public listOfWeaponFilter!: string[];
-  public listOfAbilitiesFilter!: string[];
-
-  public formMember = new FormGroup({
+  formMember = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     postes: new FormControl([], [Validators.required]),

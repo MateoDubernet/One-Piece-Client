@@ -32,8 +32,6 @@ import '@progress/kendo-angular-intl/locales/fr/all';
 import { CrewFormComponent } from './crew-form/crew-form.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MemberMaxValidatorDirective } from './directive/member-max-validator.directive';
-import { StateFormComponent } from './state-form/state-form.component';
-import { SaveGridActionButtonComponent } from './save-grid/save-grid-action-button/save-grid-action-button.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +49,6 @@ import { SaveGridActionButtonComponent } from './save-grid/save-grid-action-butt
     CrewFormComponent,
     ShipValidatorDirective,
     MemberMaxValidatorDirective,
-    StateFormComponent,
-    SaveGridActionButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,18 +23,15 @@
 >
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand>Add New Crew</button>
-    <button kendoButton (click)="saveState(grid)">Save current state</button>
-    <button kendoButton *ngIf="savedStateExists" (click)="loadState()">Load saved state</button>
-    <button kendoButton *ngIf="savedStateExists" (click)="removeState()">Remove saved state</button>
   </ng-template>
 
-  <kendo-grid-column [width]="200" field="id" title="ID" [locked]="true"></kendo-grid-column>
+  <kendo-grid-column field="id" title="ID"></kendo-grid-column>
 
-  <kendo-grid-column [width]="200" field="name" title="Name"></kendo-grid-column>
+  <kendo-grid-column field="name" title="Name"></kendo-grid-column>
 
-  <kendo-grid-column [width]="200" field="ship" title="Ship Name"></kendo-grid-column>
+  <kendo-grid-column field="ship" title="Ship Name"></kendo-grid-column>
 
-  <kendo-grid-column [width]="200" field="members" title="Members">
+  <kendo-grid-column field="members" title="Members">
     <ng-template kendoGridCellTemplate let-dataItem>
       <div class="crewGridMemberCell">
         {{dataItem.members?.length}}
@@ -43,13 +40,13 @@
     </ng-template>
   </kendo-grid-column>
 
-  <kendo-grid-column [width]="200" field="memberMax" title="Max Members">
+  <kendo-grid-column field="memberMax" title="Max Members">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <div>{{dataItem.memberMax}} members</div>
     </ng-template>
   </kendo-grid-column>
 
-  <kendo-grid-command-column [width]="200" [columnMenu]="false">
+  <kendo-grid-command-column [columnMenu]="false">
     <ng-template kendoGridCellTemplate>
       <button kendoGridEditCommand [primary]="true">Edit</button>
       <button kendoGridRemoveCommand>Delete</button>

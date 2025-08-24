@@ -7,8 +7,8 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 })
 export class AbilitiesValidator implements Validator {
   @Input('abilitiesValidator') limitNbrAbilities!: number;
-  public resLimitNbrfruits = { limitNbrfruits: true };
-  public resLimitNbrAbilities = { limitNbrAbilities: true };
+  resLimitNbrfruits = { limitNbrfruits: true };
+  resLimitNbrAbilities = { limitNbrAbilities: true };
 
   constructor() {}
 

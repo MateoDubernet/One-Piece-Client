@@ -10,11 +10,10 @@ import { Crew } from '../model/crew.model';
 export class NameValidator implements Validator {
   @Input('nameValidator') selectedItem!: Member[] | Crew[] | undefined;
 
-  public resUniqueName = { uniqueName: true };
-
-  public forbiddenName!: string;
-  public compareControlValue!: number;
-  public saveSelectItemName: string | null = null;
+  resUniqueName = { uniqueName: true };
+  forbiddenName!: string;
+  compareControlValue!: number;
+  saveSelectItemName: string | null = null;
 
   constructor() {}
 

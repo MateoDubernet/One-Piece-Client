@@ -8,8 +8,8 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 export class WeaponsValidator implements Validator {
   @Input('weaponsValidator') limitNbrWeapons!: number;
 
-  public resForbiddenWeaponCombinaison = { forbiddenWeaponCombinaison: true };
-  public reslimitNbrWeapons = { limitNbrWeapons: true };
+  resForbiddenWeaponCombinaison = { forbiddenWeaponCombinaison: true };
+  reslimitNbrWeapons = { limitNbrWeapons: true };
 
   constructor() {}
 
