@@ -2,7 +2,7 @@
   <form [formGroup]="formCrew" class="k-form">
     <kendo-formfield>
       <kendo-label text="Name"></kendo-label>
-      <input type="text" formControlName="name" kendoTextBox [nameValidator]="crews" />
+      <input [firstInputFocus] type="text" formControlName="name" kendoTextBox [nameValidator]="crews" />
       <kendo-formerror *ngIf="formCrew.controls['name'].errors?.['required']">Please enter a name</kendo-formerror>
       <kendo-formerror *ngIf="formCrew.controls['name'].errors?.['uniqueName']">Name already used</kendo-formerror>
     </kendo-formfield>

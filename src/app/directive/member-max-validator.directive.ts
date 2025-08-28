@@ -17,7 +17,7 @@ export class MemberMaxValidatorDirective implements Validator {
   constructor() {}
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (control.value < this.selectedCrew.members?.length) {
+    if (control.value < this.selectedCrew.numberOfMember) {
       return this.resLimitNbrMemberMax;
     } else {
       return null;

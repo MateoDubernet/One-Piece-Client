@@ -1,0 +1,88 @@
+<div class="grid-members">
+  <h2>{{selectedCrew.name}} Crew Members</h2>
+
+  <kendo-grid
+    [data]="gridView"
+    [sortable]="true"
+    [filterable]="true"
+    [columnMenu]="{filter: false, sort: true}"
+    [filter]="state.filter"
+    [sort]="state.sort"
+    (add)="addMember()"
+    (edit)="editMember($event)"
+    (remove)="deleteMember($event)"
+    (dataStateChange)="dataStateChange($event)"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <button *ngIf="selectedCrew.name !== undefined" kendoGridAddCommand>Add New Member</button>
+      <kendo-combobox
+        [data]="crewsFilter"
+        [value]="selectedCrew"
+        [filterable]="true"
+        textField="name"
+        valueField="id"
+        (filterChange)="crewsFliter($event)"
+        (selectionChange)="displaySelectedCrewMembers($event)"
+      >
+      </kendo-combobox>
+      <div *ngIf="this.selectedCrew.name === undefined">Select a Crew</div>
+    </ng-template>
+
+    <kendo-grid-column field="id" title="Id" [hidden]="true"></kendo-grid-column>
+
+    <kendo-grid-column field="name" title="Name"></kendo-grid-column>
+
+    <kendo-grid-column field="stations" title="Stations">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <div class="col-list">
+          <span *ngFor="let station of dataItem.stations; let isLast=last"> {{station}}{{isLast ? '' : ', '}} </span>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="abilities" title="Abilities">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <div class="col-list">
+          <span *ngFor="let abilitie of dataItem.abilities; let isLast=last"> {{abilitie}}{{isLast ? '' : ', '}} </span>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="bounty" title="Bounty" format="n0" filter="numeric">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <div>{{dataItem.bounty | currency : 'JPY' : '¥' : '1.0-0' }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="age" title="Age" format="n0" filter="numeric">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <div>{{dataItem.age}} ans</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="weapons" title="Weapon">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <div class="col-list">
+          <span *ngFor="let weapon of dataItem.weapons; let isLast=last"> {{weapon}}{{isLast ? '' : ', '}} </span>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-command-column [columnMenu]="false">
+      <ng-template kendoGridCellTemplate>
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Delete</button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</div>
+
+<app-members-form
+  [members]="members"
+  [member]="selectedMember"
+  [newMember]="isNewMember"
+  [selectedCrew]="selectedCrew"
+  (save)="saveMember($event)"
+  (close)="closeForm()"
+>
+</app-members-form>

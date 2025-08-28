@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MembersService } from '../service/members.service';
-import { Member } from '../model/member.model';
-import { Crew } from '../model/crew.model';
-import { CrewService } from '../service/crews.service';
+import { MembersService } from '../../service/members.service';
+import { Member } from '../../model/member.model';
+import { Crew } from '../../model/crew.model';
 
 @Component({
   selector: 'app-members-form',
@@ -12,21 +11,21 @@ import { CrewService } from '../service/crews.service';
 })
 export class MembersFormComponent implements OnInit {
   windowOpen: boolean = false;
-  selectedMember!: Member | undefined;
-  listOfPosteFilter!: string[];
-  listOfWeaponFilter!: string[];
-  listOfAbilitiesFilter!: string[];
+  selectedMember: Member | undefined;
+  listOfPosteFilter: string[];
+  listOfWeaponFilter: string[];
+  listOfAbilitiesFilter: string[];
 
   formMember = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
-    postes: new FormControl([], [Validators.required]),
-    abilities: new FormControl([], [Validators.required]),
-    bounty: new FormControl(0, [Validators.required]),
+    stations: new FormControl([]),
+    abilities: new FormControl([]),
+    bounty: new FormControl(0),
     age: new FormControl(0, [Validators.required]),
     crew: new FormControl(''),
     weapons: new FormControl([]),
-    crew_id: new FormControl(''),
+    crewId: new FormControl(''),
   });
 
   @Input() set member(member: Member | undefined) {
@@ -36,17 +35,13 @@ export class MembersFormComponent implements OnInit {
   }
 
   @Input() newMember: boolean = false;
-  @Input() members!: Member[];
+  @Input() members: Member[];
   @Input() selectedCrew!: Crew;
 
-  @Output() edit = new EventEmitter<Member>();
-  @Output() add = new EventEmitter<Member>();
+  @Output() save = new EventEmitter<Member>();
   @Output() close = new EventEmitter<Member>();
 
-  constructor(
-    private crewService: CrewService,
-    public memberService: MembersService
-  ) {}
+  constructor(public memberService: MembersService) {}
 
   ngOnInit(): void {
     this.listOfPosteFilter = this.memberService.listOfPoste.slice();
@@ -100,28 +95,12 @@ export class MembersFormComponent implements OnInit {
   }
 
   closeForm() {
-    this.windowOpen = false;
     this.close.emit();
   }
 
   saveForm() {
-    const member: Member = this.formMember.value;
-    member.poste = member.postes.join(', ');
-    member.abilitie = member.abilities.join(', ');
-    member.weapon = member.weapons.join(', ');
-
-    if (this.newMember) {
-      member.crew_id = this.selectedCrew.id;
-      this.memberService.postMember(member).subscribe(newMember => {
-        newMember.crew = this.selectedCrew.name;
-        this.add.emit(newMember);
-      });
-    } else {
-      this.memberService.updateMember(member).subscribe(newMember => {
-        newMember.crew = this.selectedCrew.name;
-        this.edit.emit(newMember);
-      });
-    }
-    this.windowOpen = false;
+    const member = this.formMember.value;
+    member.crewId = this.selectedCrew.id;
+    this.save.emit(member);
   }
 }

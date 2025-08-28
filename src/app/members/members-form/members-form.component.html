@@ -2,7 +2,7 @@
   <form [formGroup]="formMember" class="k-form">
     <kendo-formfield>
       <kendo-label text="Name"></kendo-label>
-      <input type="text" formControlName="name" kendoTextBox [nameValidator]="members" />
+      <input [firstInputFocus] type="text" formControlName="name" kendoTextBox [nameValidator]="members" />
       <kendo-formerror *ngIf="formMember.controls['name'].errors?.['required']">Please enter a name</kendo-formerror>
       <kendo-formerror *ngIf="formMember.controls['name'].errors?.['uniqueName']">Nom déja utilisé</kendo-formerror>
     </kendo-formfield>
@@ -16,14 +16,14 @@
         [numberPosteValidator]="3"
         (filterChange)="posteFliter($event)"
         (valueChange)="addNewPoste($event)"
-        formControlName="postes"
+        formControlName="stations"
         kendoTextBox
       >
       </kendo-multiselect>
-      <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['required']">Please enter a poste</kendo-formerror>
-      <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['limitNbrPoste']">Maximum is 3</kendo-formerror>
-      <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['forbiddenPoste']">Can't have Capitaine and Second</kendo-formerror>
-      <kendo-formerror *ngIf="formMember.controls['postes'].errors?.['twoCapitaine']">Can't have two Capitaine</kendo-formerror>
+      <kendo-formerror *ngIf="formMember.controls['stations'].errors?.['required']">Please enter a poste</kendo-formerror>
+      <kendo-formerror *ngIf="formMember.controls['stations'].errors?.['limitNbrPoste']">Maximum is 3</kendo-formerror>
+      <kendo-formerror *ngIf="formMember.controls['stations'].errors?.['forbiddenPoste']">Can't have Capitaine and Second</kendo-formerror>
+      <kendo-formerror *ngIf="formMember.controls['stations'].errors?.['twoCapitaine']">Can't have two Capitaine</kendo-formerror>
     </kendo-formfield>
 
     <kendo-formfield>
@@ -32,7 +32,6 @@
         [data]="listOfAbilitiesFilter"
         [filterable]="true"
         [allowCustom]="true"
-        [abilitiesValidator]="5"
         (filterChange)="abilitiesFliter($event)"
         (valueChange)="addNewAbilities($event)"
         formControlName="abilities"

@@ -11,7 +11,6 @@ import { NavireComponent } from './navire/navire.component';
 import { WaterComponent } from './water/water.component';
 import { NameValidator } from './directive/name-validator.directive';
 import { PosteValidator } from './directive/poste-validator.directive';
-import { AbilitiesValidator } from './directive/abilitie-validator.directive';
 import { WeaponsValidator } from './directive/weapon-validator.directive';
 import { CrewComponent } from './crew/crew.component';
 import { ShipValidatorDirective } from './directive/ship-validator.directive';
@@ -24,14 +23,15 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { ToolBarModule } from '@progress/kendo-angular-toolbar';
 import { WindowModule, DialogModule, DialogsModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { MembersComponent } from './members/members-grid.component';
+import { MembersComponent } from './members/members.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MembersFormComponent } from './members-form/members-form.component';
+import { MembersFormComponent } from './members/members-form/members-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import '@progress/kendo-angular-intl/locales/fr/all';
-import { CrewFormComponent } from './crew-form/crew-form.component';
+import { CrewFormComponent } from './crew/crew-form/crew-form.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MemberMaxValidatorDirective } from './directive/member-max-validator.directive';
+import { FirstInputFocusDirective } from './directive/firstInputFocus.directive';
 
 @NgModule({
   declarations: [
@@ -43,12 +43,12 @@ import { MemberMaxValidatorDirective } from './directive/member-max-validator.di
     MembersFormComponent,
     NameValidator,
     PosteValidator,
-    AbilitiesValidator,
     WeaponsValidator,
     CrewComponent,
     CrewFormComponent,
     ShipValidatorDirective,
     MemberMaxValidatorDirective,
+    FirstInputFocusDirective,
   ],
   imports: [
     BrowserModule,

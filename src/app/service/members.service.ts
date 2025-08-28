@@ -60,32 +60,12 @@ export class MembersService {
     'Cyborg',
     'Kanabo',
     'Massue',
-    'None',
   ];
 
   constructor(private http: HttpClient) {}
 
-  getMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(this.serverUrl);
-  }
-
-  setMembers() {
-    this.getMembers().subscribe(results => {
-      this.allMembers = results;
-      this.allMembers.forEach(member => {
-        member.postes = [];
-        member.abilities = [];
-        member.weapons = [];
-
-        member.postes.push(member.poste);
-        member.abilities.push(member.abilitie);
-        member.weapons.push(member.weapon);
-      });
-    });
-  }
-
-  getMember(id: number): Observable<Member> {
-    return this.http.get<Member>(`${this.serverUrl}/${id}`);
+  getMembersByCrewId(crewId: number): Observable<Member[]> {
+    return this.http.get<Member[]>(`${this.serverUrl}/crew/${crewId}`);
   }
 
   postMember(member: Member): Observable<Member> {

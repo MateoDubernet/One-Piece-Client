@@ -54,10 +54,7 @@ export class NavireComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const mugiwara = this.crewService.selectedCrew;
-    const sunny = new Navire('Thousand Sunny', mugiwara, { x: 0, y: 0 }, 'Brigantine', 'sunny.jpg');
-
-    this.navire = sunny;
+    this.navire = new Navire('Thousand Sunny', { x: 0, y: 0 }, 'sunny.jpg');
     this.position = this.navire.navirePosition;
   }
 

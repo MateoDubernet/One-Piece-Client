@@ -1,5 +1,5 @@
 export class Map {
-  private boardLength!: string[][];
+  private boardLength: string[][];
 
   constructor(boardLength: string[][]) {
     this.boardLength = boardLength;

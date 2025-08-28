@@ -1,46 +1,36 @@
 <h1>Crews</h1>
 <kendo-grid
-  #grid
   [data]="gridView"
-  [columnMenu]="{lock: true, filter: false, sort: true}"
-  [filter]="state.filter!"
-  [sort]="state.sort!"
-  [skip]="state.skip!"
-  [pageSize]="state.take!"
-  [rowClass]="rowCallbackCounter"
-  [sortable]="true"
+  [sortable]="{ allowUnsort: true, mode: 'single' }"
   [filterable]="true"
-  [reorderable]="true"
-  [pageable]="{previousNext: true}"
-  [navigable]="true"
-  (sortChange)="sortChange($event)"
-  (filterChange)="filterChange($event)"
-  (add)="addCrewGrid()"
+  [columnMenu]="{filter: false, sort: true}"
+  [filter]="state.filter"
+  [sort]="state.sort"
+  (add)="addCrew()"
+  (edit)="editCrew($event)"
   (remove)="deleteCrewGrid($event)"
-  (edit)="editCrewGrid($event)"
   (dataStateChange)="dataStateChange($event)"
-  (cellClick)="cellClickHandler($event)"
 >
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand>Add New Crew</button>
   </ng-template>
 
-  <kendo-grid-column field="id" title="ID"></kendo-grid-column>
+  <kendo-grid-column field="id" title="Id" [hidden]="true"></kendo-grid-column>
 
   <kendo-grid-column field="name" title="Name"></kendo-grid-column>
 
   <kendo-grid-column field="ship" title="Ship Name"></kendo-grid-column>
 
-  <kendo-grid-column field="members" title="Members">
+  <kendo-grid-column field="numberOfMember" title="Members" format="n0" filter="numeric">
     <ng-template kendoGridCellTemplate let-dataItem>
       <div class="crewGridMemberCell">
-        {{dataItem.members?.length}}
-        <button kendoButton routerLink="members" (click)="viewMembersGrid(dataItem)">View Member</button>
+        {{dataItem.numberOfMember}}
+        <button kendoButton routerLink="/members" (click)="viewMembersGrid(dataItem)">View Members</button>
       </div>
     </ng-template>
   </kendo-grid-column>
 
-  <kendo-grid-column field="memberMax" title="Max Members">
+  <kendo-grid-column field="memberMax" title="Max Members" format="n0" filter="numeric">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <div>{{dataItem.memberMax}} members</div>
     </ng-template>
@@ -54,4 +44,11 @@
   </kendo-grid-command-column>
 </kendo-grid>
 
-<app-crew-form [crew]="crew" [newCrew]="newCrew" (edit)="editCrew()" (add)="addCrew()" (close)="closeForm()"> </app-crew-form>
+<app-crew-form
+  [crews]="crews"
+  [crew]="selectedCrew"
+  [isNewCrew]="isNewCrew"
+  (saveFormEvent)="saveCrew($event)"
+  (closeFormEvent)="closeForm()"
+>
+</app-crew-form>
