@@ -26,4 +26,10 @@ Un tableau listant des membres d'équipages.
 Permet de créer et modifier des membres.
 Nécessaires d'avoir au moins créer un équipage pour créer des membres.
 
+ ---
+
+## Projet lié
+Cette application est utilisé conjointement avec le projet serveur disponible ici :
+https://github.com/MateoDubernet/One-Piece-Server
+
 
