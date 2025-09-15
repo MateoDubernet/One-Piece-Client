@@ -10,7 +10,6 @@ export class OnePieceComponent implements OnInit {
   private rows: string[] = [];
   private columns: string[] = [];
   private active: boolean = false;
-  private viewShipProperties: boolean = false;
 
   constructor() {}
 
@@ -20,10 +19,6 @@ export class OnePieceComponent implements OnInit {
 
   get boardColumns() {
     return this.columns;
-  }
-
-  get shipPropertie() {
-    return this.viewShipProperties;
   }
 
   get activeClass() {
@@ -46,14 +41,6 @@ export class OnePieceComponent implements OnInit {
       this.active = true;
     } else {
       this.active = false;
-    }
-  }
-
-  viewShipPropertie() {
-    if (this.viewShipProperties === false) {
-      this.viewShipProperties = true;
-    } else {
-      this.viewShipProperties = false;
     }
   }
 }

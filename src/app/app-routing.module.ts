@@ -5,9 +5,9 @@ import { MembersComponent } from './members/members.component';
 import { OnePieceComponent } from './one-piece/one-piece.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'onepiece', pathMatch: 'full' },
+  { path: '', redirectTo: 'ship', pathMatch: 'full' },
   { path: 'members', component: MembersComponent },
-  { path: 'one_piece', component: OnePieceComponent },
+  { path: 'ship', component: OnePieceComponent },
   { path: 'crews', component: CrewComponent },
 ];
 

@@ -9,7 +9,6 @@ import { CrewService } from '../service/crews.service';
 })
 export class NavireComponent implements OnInit {
   @Input() ngClass!: string;
-  @Input() viewShip!: boolean;
 
   @HostListener('window:keydown.ArrowRight')
   navireMoveRight() {
@@ -56,13 +55,5 @@ export class NavireComponent implements OnInit {
   ngOnInit(): void {
     this.navire = new Navire('Thousand Sunny', { x: 0, y: 0 }, 'sunny.jpg');
     this.position = this.navire.navirePosition;
-  }
-
-  closeNavireWindow() {
-    if (this.viewShip === true) {
-      this.viewShip = false;
-    } else {
-      this.viewShip = true;
-    }
   }
 }
