@@ -2,6 +2,10 @@
 
 ## Contexte
 
+### Description
+Il s'agit d'un projet réaliser durant mon alternance dans le but de me former aux frameworks Angular et Spring.
+Ceci est la partie client du projet qui utilise le framework Angular et le language Typescript, il communique avec le serveur via des requêtes http pour envoyer et recevoir des données.
+
 ### Projet lié
 Cette application est utilisé conjointement avec le projet serveur disponible ici :
 https://github.com/MateoDubernet/One-Piece-Server
