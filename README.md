@@ -1,17 +1,42 @@
 # One Piece Client
-## Installer dépendances
-- npm install
 
-## Lancer App
-- ng serve
+## Projet lié
+Cette application est utilisé conjointement avec le projet serveur disponible ici :
+https://github.com/MateoDubernet/One-Piece-Server
+
+---
+
+## Installation & Lancement
+### 1. Cloner le projet
+```bash
+    git clone <url-du-repo>
+    cd <nom-du-dossier>
+```
+
+### 2. Installer les dépendances
+```bash
+    npm install
+```
+
+### 3. Lancer l’application côté client
+Exécuter la commande :
+```bash
+    ng serve
+```
+
+### 4. Lancer l’application côté serveur
+Lien serveur: https://github.com/MateoDubernet/One-Piece-Server
+
+### 5. Ouvrir l'application
 - Aller à l'adresse localhost:4200
 
-## Utilisation
-Il y a 3 liens dans la navbar
+---
+
+## Fonctionnalités
+Il y a 3 liens dans la navbar et chaqu'un redirige vers une page du même nom.
 1. Navire
 2. Crew
 3. Member
-Chaqu'un redirige vers une page du même nom, localhost:4200 redirige vers la page navire.
 
 ### Navire
 Il y a un quadrillage avec des images d'eau et un navire.
@@ -25,11 +50,3 @@ Permet de créer et modifier des équipages.
 Un tableau listant des membres d'équipages.
 Permet de créer et modifier des membres.
 Nécessaires d'avoir au moins créer un équipage pour créer des membres.
-
- ---
-
-## Projet lié
-Cette application est utilisé conjointement avec le projet serveur disponible ici :
-https://github.com/MateoDubernet/One-Piece-Server
-
-
