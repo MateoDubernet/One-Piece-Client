@@ -33,7 +33,7 @@ ou
 Lien serveur: https://github.com/MateoDubernet/One-Piece-Server
 
 ### 5. Ouvrir l'application
-- Aller à l'adresse localhost:4200
+Aller à l'adresse localhost:4200
 
 ---
 
