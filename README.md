@@ -25,7 +25,6 @@ ou
 ```
 
 ### 3. Lancer l’application côté client
-Exécuter la commande :
 ```bash
     ng serve
 ```
