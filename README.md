@@ -1,6 +1,8 @@
 # One Piece Client
 
-## Projet lié
+## Contexte
+
+### Projet lié
 Cette application est utilisé conjointement avec le projet serveur disponible ici :
 https://github.com/MateoDubernet/One-Piece-Server
 
@@ -16,6 +18,10 @@ https://github.com/MateoDubernet/One-Piece-Server
 ### 2. Installer les dépendances
 ```bash
     npm install
+```
+ou
+```bash
+    npm install --force
 ```
 
 ### 3. Lancer l’application côté client
