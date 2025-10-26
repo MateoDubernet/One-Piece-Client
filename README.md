@@ -12,6 +12,13 @@ https://github.com/MateoDubernet/One-Piece-Server
 
 ---
 
+## Prérequis
+
+- Node.js et npm installés
+- Angular CLI installé globalement (`npm install -g @angular/cli`)
+
+---
+
 ## Installation & Lancement
 ### 1. Cloner le projet
 ```bash
