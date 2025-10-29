@@ -22,8 +22,8 @@ https://github.com/MateoDubernet/One-Piece-Server
 ## Installation & Lancement
 ### 1. Cloner le projet
 ```bash
-    git clone <url-du-repo>
-    cd <nom-du-dossier>
+    git clone https://github.com/MateoDubernet/One-Piece-Client.git
+    cd One-Piece-Client
 ```
 
 ### 2. Installer les dépendances
