@@ -28,10 +28,6 @@ https://github.com/MateoDubernet/One-Piece-Server
 
 ### 2. Installer les dépendances
 ```bash
-    npm install
-```
-ou
-```bash
     npm install --force
 ```
 
