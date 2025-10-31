@@ -23,23 +23,27 @@ https://github.com/MateoDubernet/One-Piece-Server
 ### 1. Cloner le projet
 ```bash
     git clone https://github.com/MateoDubernet/One-Piece-Client.git
+```
+
+### 2. Aller sur le projet
+```bash
     cd One-Piece-Client
 ```
 
-### 2. Installer les dépendances
+### 3. Installer les dépendances
 ```bash
     npm install --force
 ```
 
-### 3. Lancer l’application côté client
+### 4. Lancer l’application côté client
 ```bash
     ng serve
 ```
 
-### 4. Lancer l’application côté serveur
+### 5. Lancer l’application côté serveur
 Lien serveur: https://github.com/MateoDubernet/One-Piece-Server
 
-### 5. Ouvrir l'application
+### 6. Ouvrir l'application
 Aller à l'adresse localhost:4200
 
 ---
